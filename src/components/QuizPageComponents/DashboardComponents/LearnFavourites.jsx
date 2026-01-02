@@ -22,13 +22,10 @@ function LearnFavourites() {
 
     const dispatch = useDispatch();
     const lastRewardedChunkRef = useRef(-1);
-    console.log(last_10_Learned);
-    console.log(learnProgress);
 
     useEffect(() => {
         if (!learnProgress) return;
             const currentChunkIndex = last_10_Learned.length - 1;
-            console.log(currentChunkIndex);
             if (
                 learnProgress.length === 30 &&
                 lastRewardedChunkRef.current !== currentChunkIndex
@@ -36,7 +33,7 @@ function LearnFavourites() {
                 dispatch(learn(30));
                 lastRewardedChunkRef.current = currentChunkIndex;
             }
-    }, [last_10_Learned.length, learnProgress.length]);
+    }, [last_10_Learned?.length, learnProgress?.length]);
 
   return (
     <div className='learn'>
@@ -59,11 +56,11 @@ function LearnFavourites() {
             <div className="learn-box-2">
                 <div className="process">
                     <div className="progress">
-                        <div style={{width: `${learnProgress.length / 10 * 100}%`}} className="pro"></div>
+                        <div style={{width: `${learnProgress?.length || 0 / 10 * 100}%`}} className="pro"></div>
                     </div>
                     <div className="progress-info">
                         <p>Progress</p>
-                        <p>{learnProgress.length}/30</p>
+                        <p>{learnProgress?.length || 0}/30</p>
                     </div>
                 </div>
 
