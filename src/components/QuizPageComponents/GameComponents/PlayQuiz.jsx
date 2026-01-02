@@ -97,7 +97,7 @@ export default function PlayQuiz({
         </div>
         <div className="game-progress-info">
           <p>Points: {points}/{totalPoints}</p>
-          <p className={`dif ${difficulty}`}>{difficulty}</p>
+          <p className={`dif ${difficulty || `medium`}`}>{difficulty || `medium`}</p>
         </div>
       </div>
 

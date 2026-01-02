@@ -163,7 +163,7 @@
 }
 
 .answers button:hover {
-    border: 1px solid transparent;
+    border: 1px solid auto;
 }
 
 .answer {
@@ -213,7 +213,7 @@
 }
 
 .correct {
-    border: 1px solid lime;
+    border: 1px solid lime !important;
 }
 
 
