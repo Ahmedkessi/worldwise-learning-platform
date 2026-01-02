@@ -1,6 +1,6 @@
 import "./styles.css";
 import StartQuiz from "./GameComponents/StartQuiz";
-import PlayQuiz from "./GameComponents/PLayQuiz";
+import PlayQuiz from "./GameComponents/PlayQuiz";
 import ResultQuiz from "./GameComponents/ResultQuiz";
 import { useReducer } from "react";
 
