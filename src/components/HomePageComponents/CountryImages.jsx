@@ -25,7 +25,7 @@ function CountryImages() {
 
                 const data = await res.json();
                 if(!data) throw new Error(`${country?.name?.common} images was not found!`)
-                setImages(()=> data.results.map(img => img.urls.small).slice(0,14));
+                setImages(()=> data.results.map(img => img.urls.full).slice(0,14));
                 setIsloading(false)
             }
 
@@ -40,7 +40,7 @@ function CountryImages() {
     
     return (
         <>
-        <h4 style={{marginTop: `70px`}}>Places Images 🎥</h4>
+        <h4 style={{marginTop: `70px`}}>Images 🎥</h4>
         {error ? <Error msg={error} type="full" /> :
 
         (isLoading ? (

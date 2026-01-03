@@ -160,16 +160,7 @@ function signup(username, password, avatar) {
               <div className="err">
                 <Error type={`small`} msg={error}></Error>
               </div>
-            ) : username.length > 1 && password.length > 1 ? (
-              <div className="err">
-                <LoadingPageSpinner
-                  type={`small`}
-                  msg={`data is accepted, click sign in to open this account!`}
-                ></LoadingPageSpinner>
-              </div>
-            ) : (
-              ``
-            )}
+            )  : ``}
 
             <div className="btns">
               <Button handleClick={handleBack}>Back</Button>

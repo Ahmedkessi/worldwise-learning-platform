@@ -6,7 +6,6 @@ import store from "../../store/store";
 import { useState } from "react";
 import { loadUser } from "../../features/QuizSlice";
 import Error from "../UIComponents/Error";
-import LoadingPageSpinner from "../UIComponents/LoadingPageSpinner";
 
 
 function QuizLogin() {
@@ -15,6 +14,7 @@ function QuizLogin() {
   const [error, setError] = useState(``)
   const navigate = useNavigate();
   const [back, setBack] = useState(false)
+  const [canGo, setCanGo] = useState(false)
 
   function capitalize(string) {
   return string.trim().toLocaleLowerCase().split(` `).map(word => word[0].toUpperCase() + word.slice(1)).join(` `)
@@ -23,8 +23,7 @@ function QuizLogin() {
 
   function login(username, password) {
     const user = loadUserFromStorage(username);
-  
-    if (!user) {
+    if (!user || user === `null`) {
       setError("User not found");
       return;
     }
@@ -36,6 +35,7 @@ function QuizLogin() {
   
     localStorage.setItem("WorldWise_currentUser", username);
     store.dispatch(loadUser(user))
+    setCanGo(true)
   }
 
 
@@ -46,15 +46,14 @@ function QuizLogin() {
       navigate(`/`)
       return;
     }
-    setError(``)
+
     if(!username || !password) {
       setError(`please fill this form...`);
       return;
     }
-
-    login(capitalize(username), password.trim().split(` `).join(``))
     
-    if(error.length === 0) navigate(`/Quiz`)
+    login(capitalize(username), password.trim().split(` `).join(``))
+    canGo && navigate(`/Quiz`)
   }
 
 
@@ -87,7 +86,7 @@ function QuizLogin() {
                   value={username} onChange={(e)=> setUsername(e.target.value)}/>
                 <input type="password" placeholder="Enter Your Password" 
                   value={password} onChange={(e)=> setPassword(e.target.value)}/>
-                 {error.length > 0 ? <div className="err"><Error type={`small`} msg={error}></Error></div> : username.length > 1 && password.length > 1 ? <div className="err"><LoadingPageSpinner type={`small`} msg={`user was found click login to enter this account!`}></LoadingPageSpinner></div> : ``}
+                 {error.length > 0 ? <div className="err"><Error type={`small`} msg={error}></Error></div> : ``}
 
                 <div className="btns">
                   <Button handleClick={handleBack}>Back</Button>

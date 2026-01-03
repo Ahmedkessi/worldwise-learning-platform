@@ -25,11 +25,8 @@ function ResultQuiz({ dispatch, points, questions, correctAnswers, wrongAnswers 
 
   const score = `${correctAnswers} / ${totalQuestions}`;
   const currCountryID = currCountry?.id;
-  console.log(currCountryID, score, accuracy);
 
   function finalizeQuiz() {
-    console.log(currCountryID, score, accuracy);
-    console.log((xp, points, correctAnswers, wrongAnswers));
     dispatchGame(
       quizCompleted(
         xp,
